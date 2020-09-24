@@ -1,0 +1,12 @@
+C:\Users\snake\source\repos\Niquelado\bin\Debug\Niquelado.exe.config
+C:\Users\snake\source\repos\Niquelado\bin\Debug\Niquelado.exe
+C:\Users\snake\source\repos\Niquelado\bin\Debug\Niquelado.pdb
+C:\Users\snake\source\repos\Niquelado\obj\Debug\Niquelado.Properties.Resources.resources
+C:\Users\snake\source\repos\Niquelado\obj\Debug\Niquelado.csproj.GenerateResource.cache
+C:\Users\snake\source\repos\Niquelado\obj\Debug\Niquelado.csproj.CoreCompileInputs.cache
+C:\Users\snake\source\repos\Niquelado\obj\Debug\Niquelado.exe
+C:\Users\snake\source\repos\Niquelado\obj\Debug\Niquelado.pdb
+C:\Users\snake\source\repos\Niquelado\obj\Debug\Niquelado.Form1.resources
+C:\Users\snake\source\repos\Niquelado\obj\Debug\Niquelado.SMS.resources
+C:\Users\snake\source\repos\Niquelado\obj\Debug\Niquelado.IPL.resources
+C:\Users\snake\source\repos\Niquelado\obj\Debug\Niquelado.Config.resources
