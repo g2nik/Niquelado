@@ -12,21 +12,11 @@ namespace Niquelado
 {
     public partial class SMS : Form
     {
-        string n = Environment.NewLine;
-
-        string final = "";
-        string header = "";
-        string output = "";
-
-        string[] delete;
-        string[] deleteFrom;
 
         public SMS(Color background, Color elements, Color font, string[] delete, string[] deleteFrom)
         {
             InitializeComponent();
             ChageTheme(background, elements, font);
-            this.delete = delete;
-            this.deleteFrom = deleteFrom;
         }
 
         private void ChageTheme(Color background, Color elements, Color font)
@@ -34,96 +24,9 @@ namespace Niquelado
             this.BackColor = background;
 
             this.btnNickel.BackColor = elements;
-            this.btnPriorize.BackColor = elements;
-            this.btnUnpriorize.BackColor = elements;
-            this.btnHigh.BackColor = elements;
-            this.btnMid.BackColor = elements;
-            this.btnLow.BackColor = elements;
-            this.txtFinal.BackColor = elements;
 
             this.btnNickel.ForeColor = font;
-            this.btnPriorize.ForeColor = font;
-            this.btnUnpriorize.ForeColor = font;
-            this.btnHigh.ForeColor = font;
-            this.btnMid.ForeColor = font;
-            this.btnLow.ForeColor = font;
-            this.txtFinal.ForeColor = font;
         }
-
-        private void Process()
-        {
-            try
-            {
-                final = Clipboard.GetText();
-
-                final = DeleteSpace(final);
-                final = DeleteStart(final);
-
-                foreach (string s in delete) final = XDelete(final, s);
-                foreach (string s in deleteFrom) final = DeleteEnd(final, s);
-
-                final = final.Trim();
-
-                Join();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error niquelando, asegurate que hayas copiado bien el SMS");
-            }
-        }
-
-        private void Join()
-        {
-            try
-            {
-                output = header == "" ? header + final : header + n + final;
-
-                txtFinal.Text = output;
-
-                Clipboard.SetText(txtFinal.Text);
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error niquelando, asegurate que hayas copiado bien el SMS");
-            }
-        }
-
-        private void Nickel(object sender, EventArgs e)
-        {
-            Process();
-        }
-
-        private void Priorize(object sender, EventArgs e)
-        {
-            header = "** PRIORIZAR **";
-            Join();
-        }
-
-        private void Unpriorize(object sender, EventArgs e)
-        {
-            header = "";
-            Join();
-        }
-
-        private void Low(object sender, EventArgs e)
-        {
-            header = "** PRIORIDAD BAJA **";
-            Join();
-        }
-
-        private void Mid(object sender, EventArgs e)
-        {
-            header = "** PRIORIDAD MEDIA **";
-            Join();
-        }
-
-        private void High(object sender, EventArgs e)
-        {
-            header = "** PRIORIDAD ALTA **";
-            Join();
-        }
-
-        ///////////////////////////////////////////////////////////////////////////////
 
         public static string DeleteSpace(string text)
         {
@@ -151,24 +54,6 @@ namespace Niquelado
             return coincidences == toCompare.Length;
         }
 
-        public static string XDelete(string text, string toDelete)
-        {
-            bool found = false;
-            string result = "";
-
-            for (int i = 0; i < text.Length - toDelete.Length && !found; i++)
-            {
-                string check = text.Substring(i, toDelete.Length);
-                if (check == toDelete)
-                {
-                    found = true;
-                    result = text.Substring(0, i) + text.Substring(i + toDelete.Length);
-                }
-            }
-
-            return !found ? text : result;
-        }
-
         public static string DeleteText(string text, string toDelete)
         {
             bool exit = false;
@@ -190,6 +75,7 @@ namespace Niquelado
             else { return text; }
         }
 
+
         public static string DeleteStart(string text)
         {
             for (int i = 0; i < text.Length - 4; i++)
@@ -202,9 +88,9 @@ namespace Niquelado
 
         public static string DeleteEnd(string text, string checkPoint)
         {
-            for (int i = 0; i < text.Length - checkPoint.Length; i++)
+            for (int i = 0; i < text.Length - 4; i++)
             {
-                string check = text.Substring(i, checkPoint.Length);
+                string check = text.Substring(i, 4);
                 if (check == checkPoint) text = text.Substring(0, i);
             }
             return text;
@@ -212,7 +98,7 @@ namespace Niquelado
 
         public static string Divide(string text)
         {
-            string n = Environment.NewLine;
+            string[] unidades = { "ingresos", "billetes", "tarjetas", "libretas", "fuera de servicio" };
             int length = 11;
             int index = 0;
             for (int i = 0; i < text.Length - 5; i++)
@@ -220,8 +106,10 @@ namespace Niquelado
                 string check = text.Substring(i, 5).ToUpper();
                 if (check == "PASS ") index = i;
                 if (check == "PASS:") { index = i; length = 12; }
+                if (check == "PASS:\t") { index = i; }
+                if (check == "PASS\t") { index = i; }
             }
-            return text.Substring(0, index) + n + text.Substring(index, length) + n + text.Substring(index + length);
+            return text.Substring(0, index) + "\n" + text.Substring(index, length + 2) + prueba(text, unidades);
         }
 
         public static bool WordInText(string text, string word)
@@ -242,6 +130,67 @@ namespace Niquelado
                 }
             }
             return coincidence;
+        }
+
+        public static string prueba(string text, string[] unidades)
+        {
+
+            string text2 = "Hola";
+
+            for (int i = 0; i <= unidades.Length - 1; i++)
+            {
+
+                bool unidad = text.Contains(unidades[i]);
+                if (unidad)
+                {
+                    if (unidades[i] == "fuera de servicio")
+                    {
+                        text2 = " Cajero " + unidades[i];
+                    }
+                    else
+                    {
+                        text2 = " Unidad de " + unidades[i];
+                    }
+                }
+            }
+            return text2;
+
+        }
+
+        public static void Niquel()
+        {
+            String text = Clipboard.GetText();
+
+
+            //string input = Console.ReadLine();
+            //while (!string.IsNullOrEmpty(input)) text += input;
+
+            //DeleteSpace borra cualquier espacio que este despues de otro espacio
+            text = DeleteSpace(text);
+
+            //DeleteText borra el texto entre comillas del mensaje, si no lo encuentra lo deja tal cual
+            text = DeleteText(text, "+N+N+");
+
+            //DeleteStart borra toda la parafernalia del principio hasta el "CAIXABANK OF."
+            text = DeleteStart(text);
+
+            //DeleteEnd borra todo lo que encuentra a partir del texto especificado entre comillas
+            text = Divide(text);
+            text = DeleteEnd(text, "[SIN");
+
+
+            //Esta parte añade "** PRIORIZAR **" al principio del mensaje si ve que no es ingresos
+            //bool ingresos = WordInText(text, "ingresos") || WordInText(text, "INGRESOS");
+            //if (!ingresos) text = "** PRIORIZAR **" + "\n" + text;
+
+            text = text.Replace("\t", " ");
+            Clipboard.SetText(text);
+
+        }
+
+        private void btnNickel_Click(object sender, EventArgs e)
+        {
+            Niquel();
         }
     }
 }

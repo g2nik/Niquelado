@@ -30,17 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.logo = new System.Windows.Forms.PictureBox();
-            this.btnMenuConfig = new System.Windows.Forms.Button();
-            this.btnMenuSMS = new System.Windows.Forms.Button();
-            this.btnMenuIPL = new System.Windows.Forms.Button();
-            this.panelForm = new System.Windows.Forms.Panel();
-            this.panelLogo = new System.Windows.Forms.Panel();
             this.panelSubMenu = new System.Windows.Forms.Panel();
+            this.btnMenuSMSOld = new System.Windows.Forms.Button();
+            this.btnMenuConfig = new System.Windows.Forms.Button();
+            this.btnMenuIPL = new System.Windows.Forms.Button();
+            this.btnMenuSMS = new System.Windows.Forms.Button();
+            this.panelLogo = new System.Windows.Forms.Panel();
+            this.logo = new System.Windows.Forms.PictureBox();
+            this.panelForm = new System.Windows.Forms.Panel();
             this.panelMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
-            this.panelLogo.SuspendLayout();
             this.panelSubMenu.SuspendLayout();
+            this.panelLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMenu
@@ -54,19 +55,33 @@
             this.panelMenu.Size = new System.Drawing.Size(200, 561);
             this.panelMenu.TabIndex = 0;
             // 
-            // logo
+            // panelSubMenu
             // 
-            this.logo.BackColor = System.Drawing.Color.Transparent;
-            this.logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.logo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logo.ErrorImage = ((System.Drawing.Image)(resources.GetObject("logo.ErrorImage")));
-            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
-            this.logo.Location = new System.Drawing.Point(0, 0);
-            this.logo.Name = "logo";
-            this.logo.Size = new System.Drawing.Size(200, 200);
-            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.logo.TabIndex = 0;
-            this.logo.TabStop = false;
+            this.panelSubMenu.BackColor = System.Drawing.Color.Transparent;
+            this.panelSubMenu.Controls.Add(this.btnMenuSMSOld);
+            this.panelSubMenu.Controls.Add(this.btnMenuConfig);
+            this.panelSubMenu.Controls.Add(this.btnMenuIPL);
+            this.panelSubMenu.Controls.Add(this.btnMenuSMS);
+            this.panelSubMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelSubMenu.Location = new System.Drawing.Point(0, 200);
+            this.panelSubMenu.Name = "panelSubMenu";
+            this.panelSubMenu.Size = new System.Drawing.Size(200, 361);
+            this.panelSubMenu.TabIndex = 4;
+            // 
+            // btnMenuSMSOld
+            // 
+            this.btnMenuSMSOld.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnMenuSMSOld.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuSMSOld.FlatAppearance.BorderSize = 0;
+            this.btnMenuSMSOld.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenuSMSOld.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenuSMSOld.Location = new System.Drawing.Point(0, 225);
+            this.btnMenuSMSOld.Name = "btnMenuSMSOld";
+            this.btnMenuSMSOld.Size = new System.Drawing.Size(200, 75);
+            this.btnMenuSMSOld.TabIndex = 3;
+            this.btnMenuSMSOld.Text = "SMS OLD";
+            this.btnMenuSMSOld.UseVisualStyleBackColor = false;
+            this.btnMenuSMSOld.Click += new System.EventHandler(this.OpenSMSOld);
             // 
             // btnMenuConfig
             // 
@@ -83,21 +98,6 @@
             this.btnMenuConfig.UseVisualStyleBackColor = false;
             this.btnMenuConfig.Click += new System.EventHandler(this.OpenConfig);
             // 
-            // btnMenuSMS
-            // 
-            this.btnMenuSMS.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnMenuSMS.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnMenuSMS.FlatAppearance.BorderSize = 0;
-            this.btnMenuSMS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenuSMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenuSMS.Location = new System.Drawing.Point(0, 0);
-            this.btnMenuSMS.Name = "btnMenuSMS";
-            this.btnMenuSMS.Size = new System.Drawing.Size(200, 75);
-            this.btnMenuSMS.TabIndex = 1;
-            this.btnMenuSMS.Text = "SMS";
-            this.btnMenuSMS.UseVisualStyleBackColor = false;
-            this.btnMenuSMS.Click += new System.EventHandler(this.OpenSMS);
-            // 
             // btnMenuIPL
             // 
             this.btnMenuIPL.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -113,14 +113,20 @@
             this.btnMenuIPL.UseVisualStyleBackColor = false;
             this.btnMenuIPL.Click += new System.EventHandler(this.OpenIPL);
             // 
-            // panelForm
+            // btnMenuSMS
             // 
-            this.panelForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.panelForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelForm.Location = new System.Drawing.Point(200, 0);
-            this.panelForm.Name = "panelForm";
-            this.panelForm.Size = new System.Drawing.Size(784, 561);
-            this.panelForm.TabIndex = 1;
+            this.btnMenuSMS.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnMenuSMS.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuSMS.FlatAppearance.BorderSize = 0;
+            this.btnMenuSMS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenuSMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenuSMS.Location = new System.Drawing.Point(0, 0);
+            this.btnMenuSMS.Name = "btnMenuSMS";
+            this.btnMenuSMS.Size = new System.Drawing.Size(200, 75);
+            this.btnMenuSMS.TabIndex = 1;
+            this.btnMenuSMS.Text = "SMS";
+            this.btnMenuSMS.UseVisualStyleBackColor = false;
+            this.btnMenuSMS.Click += new System.EventHandler(this.OpenSMS);
             // 
             // panelLogo
             // 
@@ -132,17 +138,28 @@
             this.panelLogo.Size = new System.Drawing.Size(200, 200);
             this.panelLogo.TabIndex = 3;
             // 
-            // panelSubMenu
+            // logo
             // 
-            this.panelSubMenu.BackColor = System.Drawing.Color.Transparent;
-            this.panelSubMenu.Controls.Add(this.btnMenuConfig);
-            this.panelSubMenu.Controls.Add(this.btnMenuIPL);
-            this.panelSubMenu.Controls.Add(this.btnMenuSMS);
-            this.panelSubMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelSubMenu.Location = new System.Drawing.Point(0, 200);
-            this.panelSubMenu.Name = "panelSubMenu";
-            this.panelSubMenu.Size = new System.Drawing.Size(200, 361);
-            this.panelSubMenu.TabIndex = 4;
+            this.logo.BackColor = System.Drawing.Color.Transparent;
+            this.logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.logo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.logo.ErrorImage = ((System.Drawing.Image)(resources.GetObject("logo.ErrorImage")));
+            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
+            this.logo.Location = new System.Drawing.Point(0, 0);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(200, 200);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.logo.TabIndex = 0;
+            this.logo.TabStop = false;
+            // 
+            // panelForm
+            // 
+            this.panelForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.panelForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelForm.Location = new System.Drawing.Point(200, 0);
+            this.panelForm.Name = "panelForm";
+            this.panelForm.Size = new System.Drawing.Size(784, 561);
+            this.panelForm.TabIndex = 1;
             // 
             // Form1
             // 
@@ -156,9 +173,9 @@
             this.Name = "Form1";
             this.Text = "Niquelado";
             this.panelMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
-            this.panelLogo.ResumeLayout(false);
             this.panelSubMenu.ResumeLayout(false);
+            this.panelLogo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -173,6 +190,7 @@
         private System.Windows.Forms.PictureBox logo;
         private System.Windows.Forms.Panel panelSubMenu;
         private System.Windows.Forms.Panel panelLogo;
+        private System.Windows.Forms.Button btnMenuSMSOld;
     }
 }
 

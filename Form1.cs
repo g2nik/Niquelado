@@ -62,6 +62,11 @@ namespace Niquelado
             OpenForm(new SMS(background, elements, font, delete, deleteFrom));
         }
 
+        private void OpenSMSOld(object sender, EventArgs e)
+        {
+            OpenForm(new SMSOld(background, elements, font, delete, deleteFrom));
+        }
+
         private void OpenIPL(object sender, EventArgs e)
         {
             OpenForm(new IPL(background, elements, font));

@@ -10,3 +10,17 @@ C:\Users\snake\source\repos\Niquelado\obj\Debug\Niquelado.Form1.resources
 C:\Users\snake\source\repos\Niquelado\obj\Debug\Niquelado.SMS.resources
 C:\Users\snake\source\repos\Niquelado\obj\Debug\Niquelado.IPL.resources
 C:\Users\snake\source\repos\Niquelado\obj\Debug\Niquelado.Config.resources
+C:\Users\Snake\Documents\GitHub\Niquelado\obj\Debug\Niquelado.csprojAssemblyReference.cache
+C:\Users\Snake\Documents\GitHub\Niquelado\obj\Debug\Niquelado.Config.resources
+C:\Users\Snake\Documents\GitHub\Niquelado\obj\Debug\Niquelado.Form1.resources
+C:\Users\Snake\Documents\GitHub\Niquelado\obj\Debug\Niquelado.IPL.resources
+C:\Users\Snake\Documents\GitHub\Niquelado\obj\Debug\Niquelado.Properties.Resources.resources
+C:\Users\Snake\Documents\GitHub\Niquelado\obj\Debug\Niquelado.SMS.resources
+C:\Users\Snake\Documents\GitHub\Niquelado\obj\Debug\Niquelado.SMSOld.resources
+C:\Users\Snake\Documents\GitHub\Niquelado\obj\Debug\Niquelado.csproj.GenerateResource.cache
+C:\Users\Snake\Documents\GitHub\Niquelado\obj\Debug\Niquelado.csproj.CoreCompileInputs.cache
+C:\Users\Snake\Documents\GitHub\Niquelado\obj\Debug\Niquelado.exe
+C:\Users\Snake\Documents\GitHub\Niquelado\obj\Debug\Niquelado.pdb
+C:\Users\Snake\Documents\GitHub\Niquelado\bin\Debug\Niquelado.exe.config
+C:\Users\Snake\Documents\GitHub\Niquelado\bin\Debug\Niquelado.exe
+C:\Users\Snake\Documents\GitHub\Niquelado\bin\Debug\Niquelado.pdb
