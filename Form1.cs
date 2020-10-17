@@ -43,10 +43,12 @@ namespace Niquelado
             this.panelMenu.BackColor = elements;
             this.btnMenuIPL.BackColor = elements;
             this.btnMenuSMS.BackColor = elements;
+            btnMenuSMSOld.BackColor = elements;
             this.btnMenuConfig.BackColor = elements;
 
             this.btnMenuIPL.ForeColor = font;
             this.btnMenuSMS.ForeColor = font;
+            btnMenuSMSOld.ForeColor = font;
             this.btnMenuConfig.ForeColor = font;
         }
 
