@@ -78,7 +78,7 @@ namespace Niquelado
                 string final = address + n +
                     "Of: " + office + n +
                     "Cajero: " + atm + n +
-                    pass + n + n +
+                    pass + n +
                     motive;
 
                 Clipboard.SetText(final);
