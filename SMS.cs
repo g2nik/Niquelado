@@ -44,148 +44,48 @@ namespace Niquelado
             return text;
         }
 
-        public static bool TextCoincides(string text, string toCompare, int index)
-        {
-            int coincidences = 0;
-            for (int i = 0; i < toCompare.Length; i++)
-            {
-                if (text.Substring(index + i, 1) == toCompare.Substring(i, 1)) coincidences++;
-            }
-            return coincidences == toCompare.Length;
-        }
-
-        public static string DeleteText(string text, string toDelete)
-        {
-            bool exit = false;
-            bool coincidence = false;
-            int index = 0;
-
-            for (int i = 0; i < text.Length - 1 && !exit; i++)
-            {
-                if (i == text.Length - toDelete.Length) exit = true;
-
-                if (TextCoincides(text, toDelete, i))
-                {
-                    index = i;
-                    exit = true;
-                    coincidence = true;
-                }
-            }
-            if (coincidence) { return text.Substring(0, index) + text.Substring(index + toDelete.Length); }
-            else { return text; }
-        }
-
-
-        public static string DeleteStart(string text)
-        {
-            for (int i = 0; i < text.Length - 4; i++)
-            {
-                string check = text.Substring(i, 4);
-                if (check == "BANK") text = text.Substring(i + 5);
-            }
-            return text;
-        }
-
-        public static string DeleteEnd(string text, string checkPoint)
-        {
-            for (int i = 0; i < text.Length - 4; i++)
-            {
-                string check = text.Substring(i, 4);
-                if (check == checkPoint) text = text.Substring(0, i);
-            }
-            return text;
-        }
-
-        public static string Divide(string text)
-        {
-            string[] unidades = { "ingresos", "billetes", "tarjetas", "libretas", "fuera de servicio" };
-            int length = 11;
-            int index = 0;
-            for (int i = 0; i < text.Length - 5; i++)
-            {
-                string check = text.Substring(i, 5).ToUpper();
-                if (check == "PASS ") index = i;
-                if (check == "PASS:") { index = i; length = 12; }
-                if (check == "PASS:\t") { index = i; }
-                if (check == "PASS\t") { index = i; }
-            }
-            return text.Substring(0, index) + "\n" + text.Substring(index, length + 2) + prueba(text, unidades);
-        }
-
-        public static bool WordInText(string text, string word)
-        {
-            bool exit = false;
-            bool coincidence = false;
-            int index = 0;
-
-            for (int i = 0; i < text.Length - 1 && !exit; i++)
-            {
-                if (i == text.Length - word.Length) exit = true;
-
-                if (TextCoincides(text, word, i))
-                {
-                    index = i;
-                    exit = true;
-                    coincidence = true;
-                }
-            }
-            return coincidence;
-        }
-
-        public static string prueba(string text, string[] unidades)
-        {
-
-            string text2 = "Hola";
-
-            for (int i = 0; i <= unidades.Length - 1; i++)
-            {
-
-                bool unidad = text.Contains(unidades[i]);
-                if (unidad)
-                {
-                    if (unidades[i] == "fuera de servicio")
-                    {
-                        text2 = " Cajero " + unidades[i];
-                    }
-                    else
-                    {
-                        text2 = " Unidad de " + unidades[i];
-                    }
-                }
-            }
-            return text2;
-
-        }
-
         public static void Niquel()
         {
-            String text = Clipboard.GetText();
 
+            try
+            {
+                string text = Clipboard.GetText();
+                string output = "";
+                string office = "";
+                string atm = "";
+                string address = "";
+                string pass = "";
+                string motive = "";
 
-            //string input = Console.ReadLine();
-            //while (!string.IsNullOrEmpty(input)) text += input;
+                string[] motives = { "Unidad de ingresos", "Unidad de billetes", "Unidad de tarjetas", "Unidad de libretas", "Cajero fuera de servicio" };
+                string[] toDelete = { "+N+N+", "+N+N+S", "**externalizada**", "**PRIORIZAR**", "***TRASPASADA***", "+N+S+", "+N+S", "" };
 
-            //DeleteSpace borra cualquier espacio que este despues de otro espacio
-            text = DeleteSpace(text);
+                string n = Environment.NewLine;
 
-            //DeleteText borra el texto entre comillas del mensaje, si no lo encuentra lo deja tal cual
-            text = DeleteText(text, "+N+N+");
+                string copied = text;
+                output = copied.Replace("  ", ""); //Borra espacios dobles
+                output = output.Replace("\t", ""); //Borra tabulaciones
+                output = output.Substring(output.IndexOf("[")); //Borra la parafernalia del principio hasta el primer [
+                for (int i = 0; i <= motives.Length - 1; i++) if (output.Contains(motives[i])) motive = motives[i]; //Obtiene el motivo de porque el cajero esta caido
+                atm = output.Substring(1, 5); //Obtiene el cajero
+                office = output.Substring(8, 4); //Obtiene la oficina
+                output = output.Substring(output.IndexOf("CAIXABANK")); //Borra hasta CAIXABANK
+                address = output.Substring(output.IndexOf(office) + 5, output.IndexOf("+") - output.IndexOf(office) - 5); //Obtiene la direccióon
+                output = output.Substring(output.IndexOf("+"), output.IndexOf("[") - output.IndexOf("+")); //Borra la dirección y todo despues de la pass
+                for (int i = 0; i < toDelete.Length - 1; i++) output = output.Replace(toDelete[i], ""); //Borra todos los elementos que se hallen en toDelete
+                pass = output.Replace("\n", ""); //Obtiene la pass
 
-            //DeleteStart borra toda la parafernalia del principio hasta el "CAIXABANK OF."
-            text = DeleteStart(text);
+                string final = address + n +
+                    "Of: " + office + n +
+                    "Cajero: " + atm + n +
+                    pass + n + n +
+                    motive;
 
-            //DeleteEnd borra todo lo que encuentra a partir del texto especificado entre comillas
-            text = Divide(text);
-            text = DeleteEnd(text, "[SIN");
-
-
-            //Esta parte añade "** PRIORIZAR **" al principio del mensaje si ve que no es ingresos
-            //bool ingresos = WordInText(text, "ingresos") || WordInText(text, "INGRESOS");
-            //if (!ingresos) text = "** PRIORIZAR **" + "\n" + text;
-
-            text = text.Replace("\t", " ");
-            Clipboard.SetText(text);
-
+                Clipboard.SetText(final);
+            }
+            catch
+            {
+            }
         }
 
         private void btnNickel_Click(object sender, EventArgs e)
