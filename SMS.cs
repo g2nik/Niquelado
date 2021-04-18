@@ -96,6 +96,7 @@ namespace Niquelado
                 SendKeys.SendWait("{Tab}");
                 SendKeys.Send("{Enter}");
                 SendKeys.Send("{Enter}");
+                System.Threading.Thread.Sleep(1000);
                 SendKeys.Send("^{F4}");
             }
             catch

@@ -88,7 +88,8 @@ namespace Niquelado
                 if (!stop)
                 {
                     round(codes[i]);
-                    SendKeys.SendWait(" ");
+                    SendKeys.SendWait("{Enter}");
+                    System.Threading.Thread.Sleep(500);
                 }
             }
         }
@@ -103,7 +104,7 @@ namespace Niquelado
                 if (!stop)
                 {
                     SendKeys.SendWait("{TAB}");
-                    System.Threading.Thread.Sleep(50);
+                    System.Threading.Thread.Sleep(150);
                 }
                 
             }
@@ -124,7 +125,7 @@ namespace Niquelado
             }
             SendKeys.SendWait(" ");
             //TODO BIEN
-            System.Threading.Thread.Sleep(1500);
+            System.Threading.Thread.Sleep(500);
 
             SendKeys.SendWait("{TAB}");
             System.Threading.Thread.Sleep(500);
