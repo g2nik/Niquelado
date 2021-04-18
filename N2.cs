@@ -14,6 +14,8 @@ namespace Niquelado
     {
         string[] codes;
         bool stop = false;
+        bool first = true;
+        bool last = false;
 
         public N2(Color background, Color elements, Color font)
         {
@@ -23,7 +25,10 @@ namespace Niquelado
             txtDelete.Text = "60";
             txtTabCod.Text = "10";
             txtTabSearch.Text = "43";
-            txtCodes.Text = "654" + Environment.NewLine + "5084";
+            txtCodes.Text = "0654" + Environment.NewLine +
+                "5084" + Environment.NewLine +
+                "6977" + Environment.NewLine +
+                "g736";
 
         }
 
@@ -71,25 +76,30 @@ namespace Niquelado
         private void btnAsign_Click(object sender, EventArgs e)
         {
             codes = txtCodes.Text.Split('\n');
-            for (int i = 0; i < codes.Length; i++)
-            {
-                if (codes[i].Length == 4)
-                {
-                    codes[i] = "0" + codes[i];
-                }
-            }
+            //for (int i = 0; i < codes.Length; i++)
+            //{
+            //    if (codes[i].Length == 4)
+            //    {
+            //        codes[i] = "0" + codes[i];
+            //    }
+            //}
 
 
             SendKeys.SendWait("%{Tab}");
-            
+
 
             for (int i = 0; i < codes.Length; i++)
             {
+               
+                last = i == codes.Length - 1;
+
                 if (!stop)
                 {
                     round(codes[i]);
-                    SendKeys.SendWait("{Enter}");
-                    System.Threading.Thread.Sleep(500);
+                    if (!last) {
+                        SendKeys.SendWait("{Enter}");
+                        System.Threading.Thread.Sleep(500);
+                    }
                 }
             }
         }
@@ -98,13 +108,19 @@ namespace Niquelado
         {
             int tabsToCode = 0;
             int.TryParse(txtTabCod.Text, out tabsToCode);
+
+            if (!first)
+            {
+                tabsToCode--;
+            }
             
             for (int i = 0; i < tabsToCode; i++)
             {
                 if (!stop)
                 {
                     SendKeys.SendWait("{TAB}");
-                    System.Threading.Thread.Sleep(150);
+                    //System.Threading.Thread.Sleep(150);
+                    System.Threading.Thread.Sleep(50);
                 }
                 
             }
@@ -114,22 +130,29 @@ namespace Niquelado
 
             int tabsToSearch = 0;
             int.TryParse(txtTabSearch.Text, out tabsToSearch);
+
+            if (!first)
+            {
+                //tabsToSearch++;
+            }
+
             for (int i = 0; i < tabsToSearch; i++)
             {
                 if (!stop)
                 {
                     SendKeys.SendWait("{TAB}");
-                    System.Threading.Thread.Sleep(50);
+                    System.Threading.Thread.Sleep(25);
                 }
                 
             }
             SendKeys.SendWait(" ");
             //TODO BIEN
             System.Threading.Thread.Sleep(500);
-
             SendKeys.SendWait("{TAB}");
             System.Threading.Thread.Sleep(500);
             SendKeys.SendWait("{Enter}");
+            System.Threading.Thread.Sleep(500);
+            first = false;
         }
 
         private void btnStop_Click(object sender, EventArgs e)
