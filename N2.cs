@@ -120,7 +120,7 @@ namespace Niquelado
                 {
                     SendKeys.SendWait("{TAB}");
                     //System.Threading.Thread.Sleep(150);
-                    System.Threading.Thread.Sleep(50);
+                    System.Threading.Thread.Sleep(100);
                 }
                 
             }
@@ -131,9 +131,9 @@ namespace Niquelado
             int tabsToSearch = 0;
             int.TryParse(txtTabSearch.Text, out tabsToSearch);
 
-            if (!first)
+            if (last)
             {
-                //tabsToSearch++;
+                tabsToSearch++;
             }
 
             for (int i = 0; i < tabsToSearch; i++)

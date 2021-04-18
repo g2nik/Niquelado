@@ -84,7 +84,7 @@ namespace Niquelado
 
                 Clipboard.SetText(final);
                 SendKeys.SendWait("%{Tab}");
-                System.Threading.Thread.Sleep(50);
+                System.Threading.Thread.Sleep(150);
                 SendKeys.Send("^{v}");
                 System.Threading.Thread.Sleep(50);
                 SendKeys.SendWait("{Tab}");
@@ -96,8 +96,8 @@ namespace Niquelado
                 SendKeys.SendWait("{Tab}");
                 SendKeys.Send("{Enter}");
                 SendKeys.Send("{Enter}");
-                System.Threading.Thread.Sleep(1000);
-                SendKeys.SendWait("^{F4}");
+                System.Threading.Thread.Sleep(500);
+                SendKeys.Send("^{F4}");
             }
             catch
             {
