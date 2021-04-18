@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panelMenu = new System.Windows.Forms.Panel();
             this.panelSubMenu = new System.Windows.Forms.Panel();
+            this.btnN2 = new System.Windows.Forms.Button();
             this.btnMenuSMSOld = new System.Windows.Forms.Button();
             this.btnMenuConfig = new System.Windows.Forms.Button();
             this.btnMenuIPL = new System.Windows.Forms.Button();
@@ -58,6 +59,7 @@
             // panelSubMenu
             // 
             this.panelSubMenu.BackColor = System.Drawing.Color.Transparent;
+            this.panelSubMenu.Controls.Add(this.btnN2);
             this.panelSubMenu.Controls.Add(this.btnMenuSMSOld);
             this.panelSubMenu.Controls.Add(this.btnMenuConfig);
             this.panelSubMenu.Controls.Add(this.btnMenuIPL);
@@ -67,6 +69,21 @@
             this.panelSubMenu.Name = "panelSubMenu";
             this.panelSubMenu.Size = new System.Drawing.Size(200, 361);
             this.panelSubMenu.TabIndex = 4;
+            // 
+            // btnN2
+            // 
+            this.btnN2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnN2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnN2.FlatAppearance.BorderSize = 0;
+            this.btnN2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnN2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnN2.Location = new System.Drawing.Point(0, 300);
+            this.btnN2.Name = "btnN2";
+            this.btnN2.Size = new System.Drawing.Size(200, 75);
+            this.btnN2.TabIndex = 4;
+            this.btnN2.Text = "N2";
+            this.btnN2.UseVisualStyleBackColor = false;
+            this.btnN2.Click += new System.EventHandler(this.btnN2_Click_1);
             // 
             // btnMenuSMSOld
             // 
@@ -191,6 +208,7 @@
         private System.Windows.Forms.Panel panelSubMenu;
         private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.Button btnMenuSMSOld;
+        private System.Windows.Forms.Button btnN2;
     }
 }
 

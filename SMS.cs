@@ -65,6 +65,7 @@ namespace Niquelado
                 string copied = text;
                 output = copied.Replace("  ", ""); //Borra espacios dobles
                 output = output.Replace("\t", ""); //Borra tabulaciones
+                output = output.Replace("Definir en texto completamente CAUSA-SINTOMA-ACCION , fotografías y/o VIDEOS.", ""); //Borra tabulaciones
                 output = output.Substring(output.IndexOf("[")); //Borra la parafernalia del principio hasta el primer [
                 for (int i = 0; i <= motives.Length - 1; i++) if (output.Contains(motives[i])) motive = motives[i]; //Obtiene el motivo de porque el cajero esta caido
                 atm = output.Substring(1, 5); //Obtiene el cajero
@@ -82,6 +83,20 @@ namespace Niquelado
                     motive;
 
                 Clipboard.SetText(final);
+                SendKeys.SendWait("%{Tab}");
+                System.Threading.Thread.Sleep(150);
+                SendKeys.Send("^{v}");
+                System.Threading.Thread.Sleep(150);
+                SendKeys.SendWait("{Tab}");
+                SendKeys.SendWait("{Tab}");
+                SendKeys.SendWait("{Tab}");
+                SendKeys.SendWait("{Tab}");
+                SendKeys.SendWait("{Tab}");
+                SendKeys.SendWait("{Tab}");
+                SendKeys.SendWait("{Tab}");
+                SendKeys.Send("{Enter}");
+                SendKeys.Send("{Enter}");
+                SendKeys.Send("^{F4}");
             }
             catch
             {

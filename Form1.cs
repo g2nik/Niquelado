@@ -50,6 +50,9 @@ namespace Niquelado
             this.btnMenuSMS.ForeColor = font;
             btnMenuSMSOld.ForeColor = font;
             this.btnMenuConfig.ForeColor = font;
+
+            btnN2.ForeColor = font;
+            btnN2.BackColor = elements;
         }
 
         private string[] Clean(string[] array)
@@ -79,6 +82,11 @@ namespace Niquelado
             OpenForm(new Config(background, elements, font, delete, deleteFrom));
         }
 
+        private void btnN2_Click(object sender, EventArgs e)
+        {
+            
+        }
+
         private void OpenForm(Form childForm)
         {
             if (activeForm != null) activeForm.Close();
@@ -90,6 +98,11 @@ namespace Niquelado
             panelForm.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
+        }
+
+        private void btnN2_Click_1(object sender, EventArgs e)
+        {
+            OpenForm(new N2(background, elements, font));
         }
     }
 }

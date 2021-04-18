@@ -67,6 +67,12 @@
     <Compile Include="IPL.Designer.cs">
       <DependentUpon>IPL.cs</DependentUpon>
     </Compile>
+    <Compile Include="N2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="N2.Designer.cs">
+      <DependentUpon>N2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SMS.cs">
@@ -89,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IPL.resx">
       <DependentUpon>IPL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="N2.resx">
+      <DependentUpon>N2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
